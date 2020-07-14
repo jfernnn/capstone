@@ -1,8 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MainPage = (props) => {
     return (
-        <p>U made it</p>
+        <div>
+            <p>U made it</p>
+            <Link to='/options'>Options</Link>
+        </div>
     );
 };
 
