@@ -21,7 +21,7 @@ class App extends Component {
     this.setState({ user: null });
   }
 
-  handleSignup = () => {
+  handleSignupOrLogin = () => {
     this.setState({user: userService.getUser()});
   }
 
@@ -42,12 +42,13 @@ class App extends Component {
           <Route exact path='/signup' render={({ history }) => 
             <SignupPage 
               history={history}
-              handleSignup={this.handleSignup}
+              handleSignupOrLogin={this.handleSignupOrLogin}
             />
           }/>
           <Route exact path='/login' render={({ history }) => 
             <LoginPage
               history={history}
+              handleSignupOrLogin={this.handleSignupOrLogin}
             />
           }/>
         </Switch>
