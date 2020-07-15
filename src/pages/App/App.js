@@ -11,15 +11,30 @@ import userService from '../../utils/userService';
 class App extends Component {
   constructor() {
     super();
-
+    this.state = {
+      user: userService.getUser()
+    }
   }
+
+  handleLogout = () => {
+    userService.logout();
+    this.setState({ user: null });
+  }
+
+  handleSignup = () => {
+    this.setState({user: userService.getUser()});
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">Songs Songs Songs</header>
         <Switch>
           <Route exact path='/' render={() =>
-            <MainPage />
+            <MainPage 
+              user={this.state.user}
+              handleLogout={this.handleLogout}
+            />
           }/>
           <Route exact path='/options' render={() =>
             <OptionsPage />
@@ -27,6 +42,7 @@ class App extends Component {
           <Route exact path='/signup' render={({ history }) => 
             <SignupPage 
               history={history}
+              handleSignup={this.handleSignup}
             />
           }/>
           <Route exact path='/login' render={({ history }) => 
