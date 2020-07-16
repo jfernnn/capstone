@@ -11,6 +11,7 @@ const MainPage = (props) => {
             />
             <p>U made it</p>
             <Link to='/options'>Options</Link>
+            <Link to='/add'>Add a Post</Link>
         </div>
     );
 };

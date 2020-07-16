@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import './App.css';
-import MainPage from '../MainPage/MainPage'
-import OptionsPage from '../OptionsPage/OptionsPage'
+import MainPage from '../MainPage/MainPage';
+import OptionsPage from '../OptionsPage/OptionsPage';
+import AddPostPage from '../AddPostPage/AddPostPage';
+import AddSongPost from '../AddPostPage/PostType/AddSongPost';
+import AddAlbumPost from '../AddPostPage/PostType/AddAlbumPost';
+import AddArtistPost from '../AddPostPage/PostType/AddArtistPost';
+
 import { Route, Switch } from 'react-router-dom';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -50,6 +55,18 @@ class App extends Component {
               history={history}
               handleSignupOrLogin={this.handleSignupOrLogin}
             />
+          }/>
+          <Route exact path='/add' render={() =>
+            <AddPostPage />
+          }/>
+          <Route exact path='/add/song' render={() =>
+            <AddSongPost />
+          }/>
+          <Route exact path='/add/album' render={() =>
+            <AddAlbumPost />
+          }/>
+          <Route exact path='/add/artist' render={() =>
+            <AddArtistPost />
           }/>
         </Switch>
       </div>

@@ -14,7 +14,7 @@ class LoginPage extends Component {
     this.setState({
         [e.target.name]: e.target.value
     });
-  }
+  };
 
   handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ class LoginPage extends Component {
       // Invalid user data (probably duplicate email)
       alert('Invalid Creds');
     }
-  }
+  };
 
   render() {
     return (
@@ -53,7 +53,7 @@ class LoginPage extends Component {
         </form>
       </div>
     );
-  }
+  };
 }
 
 export default LoginPage;
