@@ -7,7 +7,6 @@ const AddArtistPost = (props) => {
         <>
             <h1>Add a Artist</h1>
             <Link to='/'>Cancel</Link>
-
         </>
     )
 };

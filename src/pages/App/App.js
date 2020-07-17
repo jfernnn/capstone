@@ -7,8 +7,9 @@ import AddPostPage from '../AddPostPage/AddPostPage';
 import AddSongPost from '../AddPostPage/PostType/AddSongPost';
 import AddAlbumPost from '../AddPostPage/PostType/AddAlbumPost';
 import AddArtistPost from '../AddPostPage/PostType/AddArtistPost';
+import NavBar from '../../components/NavBar/NavBar';
 
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService';
@@ -17,8 +18,24 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      posts: [],
       user: userService.getUser()
     }
+  }
+
+  handleAddSong = (newSongData) => {
+    newSongData._id = this.state.posts.length + 1;
+    console.log('hopefully full songdata', newSongData);
+
+    this.setState({
+      posts: [...this.state.posts, newSongData]
+    }, () => this.props.history.push('/'));
+  }
+
+  handleDeleteSong = songId => {
+    this.setState(state => ({
+      posts: state.posts.filter(post => post._id !== songId)
+    }), () => this.props.history.push('/'));
   }
 
   handleLogout = () => {
@@ -33,13 +50,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <NavBar 
+            user={this.state.user} 
+            handleLogout={this.handleLogout}
+        />
         <header className="App-header">Songs Songs Songs</header>
         <Switch>
-          <Route exact path='/' render={() =>
-            <MainPage 
-              user={this.state.user}
-              handleLogout={this.handleLogout}
-            />
+          <Route exact path='/' render={({ history }) =>
+            userService.getUser() ?
+              <MainPage 
+                history={history}
+                posts={this.state.posts}
+                user={this.state.user}
+                handleLogout={this.handleLogout}
+                handleDeleteSong={this.handleDeleteSong}
+              />
+            :
+              <Redirect to='/login' />
           }/>
           <Route exact path='/options' render={() =>
             <OptionsPage />
@@ -57,10 +84,14 @@ class App extends Component {
             />
           }/>
           <Route exact path='/add' render={() =>
-            <AddPostPage />
+            <AddPostPage 
+              handleAddSong={this.handleAddSong}
+            />
           }/>
           <Route exact path='/add/song' render={() =>
-            <AddSongPost />
+            <AddSongPost 
+              handleAddSong={this.handleAddSong}
+            />
           }/>
           <Route exact path='/add/album' render={() =>
             <AddAlbumPost />

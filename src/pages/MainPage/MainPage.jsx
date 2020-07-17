@@ -1,15 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import NavBar from '../../components/NavBar/NavBar';
+import PostCard from '../../components/PostCard/PostCard';
+import SongPost from '../../components/PostCard/PostCardType/SongPost';
+import SongCard from '../../components/PostCard/PostCardType/SongPost';
 
-const MainPage = (props) => {
+function MainPage(props) {
     return (
         <div>
-            <NavBar 
-                user={props.user} 
-                handleLogout={props.handleLogout}
-            />
+
             <p>U made it</p>
+            <br></br>
+            <br></br>
+            <br></br>
+            {props.posts.map(post => 
+                <PostCard
+                    key={post._id}
+                    post={post}
+                    handleDeleteSong={props.handleDeleteSong}
+                />
+            )}
+            <br></br>
+            <br></br>
+            <br></br>
             <Link to='/options'>Options</Link>
             <Link to='/add'>Add a Post</Link>
         </div>
