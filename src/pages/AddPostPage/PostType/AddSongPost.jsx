@@ -9,13 +9,14 @@ class AddSongPost extends Component {
         album: '',
         artist: '',
         description: '',
+        user: this.props.user.name
       }
     }
 
     handleSubmit = e => {
       e.preventDefault();
       console.log(this.state.formData);
-      this.props.handleAddSong(this.state.formData);
+      this.props.handleAddPost(this.state.formData);
     };
 
     handleChange = e => {
@@ -24,11 +25,20 @@ class AddSongPost extends Component {
           formData
       });
     };
-
+    
     render(){
       return (
         <>
           <h1>Add a song</h1>
+          <form action="/api/posts/search" method="GET">
+            <div class="input-group">
+              <input type="text" name="username" class="form-control"
+                placeholder="Enter a Track" />
+              <span class="input-group-btn">
+                <button class="btn btn-success" type="submit">Go!</button>
+              </span>
+            </div>
+          </form>
           <form onSubmit={this.handleSubmit}>
             <div>
               <label>Song Title</label>

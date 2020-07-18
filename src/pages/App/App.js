@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from '../../logo.svg';
 import './App.css';
 import MainPage from '../MainPage/MainPage';
 import OptionsPage from '../OptionsPage/OptionsPage';
@@ -23,18 +22,17 @@ class App extends Component {
     }
   }
 
-  handleAddSong = (newSongData) => {
-    newSongData._id = this.state.posts.length + 1;
-    console.log('hopefully full songdata', newSongData);
-
+  handleAddPost = (newPostData) => {
+    newPostData._id = this.state.posts.length + 1;
+    console.log(newPostData);
     this.setState({
-      posts: [...this.state.posts, newSongData]
+      posts: [...this.state.posts, newPostData]
     }, () => this.props.history.push('/'));
   }
 
-  handleDeleteSong = songId => {
+  handleDeletePost = postId => {
     this.setState(state => ({
-      posts: state.posts.filter(post => post._id !== songId)
+      posts: state.posts.filter(post => post._id !== postId)
     }), () => this.props.history.push('/'));
   }
 
@@ -63,7 +61,7 @@ class App extends Component {
                 posts={this.state.posts}
                 user={this.state.user}
                 handleLogout={this.handleLogout}
-                handleDeleteSong={this.handleDeleteSong}
+                handleDeletePost={this.handleDeletePost}
               />
             :
               <Redirect to='/login' />
@@ -85,19 +83,27 @@ class App extends Component {
           }/>
           <Route exact path='/add' render={() =>
             <AddPostPage 
-              handleAddSong={this.handleAddSong}
+              user={this.state.user}
+              handleAddPost={this.handleAddPost}
             />
           }/>
           <Route exact path='/add/song' render={() =>
             <AddSongPost 
-              handleAddSong={this.handleAddSong}
+              user={this.state.user}
+              handleAddPost={this.handleAddPost}
             />
           }/>
           <Route exact path='/add/album' render={() =>
-            <AddAlbumPost />
+            <AddAlbumPost 
+              user={this.state.user}
+              handleAddPost={this.handleAddPost}
+            />
           }/>
           <Route exact path='/add/artist' render={() =>
-            <AddArtistPost />
+            <AddArtistPost 
+              user={this.state.user}
+              handleAddPost={this.handleAddPost}
+            />
           }/>
         </Switch>
       </div>

@@ -1,0 +1,13 @@
+.post {
+    border: solid;
+    margin: 5px 60vh;
+    opacity: .78;
+}
+
+.post:hover {
+    opacity: 1;
+}
+
+h1 {
+    margin-top: -10px;
+}

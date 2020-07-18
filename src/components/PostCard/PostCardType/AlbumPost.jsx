@@ -1,16 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import '../PostCard.css';
 
-function AlbumCard({ album }) {
+const AlbumPost = (props) => {
     return (
-        <div>
-            <h3>{album.album}</h3>
+        <div className='post'>
+            <h5>{props.post.user}</h5>
+            <h1>ALBUM</h1>
+            <h3>{props.post.album}</h3>
             <dl>
-                <dd>{album.artist}</dd>
-                <dd>{album.description}</dd>
+                <dd>{props.post.artist}</dd>
+                <dd>{props.post.description}</dd>
             </dl>
+            <div className='panel-footer'>
+                <button onClick={() => props.handleDeletePost(props.post._id)}>
+                    DELETE
+                </button>
+            </div>
         </div>
     );
 }
 
-export default AlbumCard;
+export default AlbumPost;

@@ -9,12 +9,18 @@ const PostCard = (props) => {
     if(props.post.type === 'song') {
         return <SongPost 
             post={props.post} 
-            handleDeleteSong={props.handleDeleteSong}
+            handleDeletePost={props.handleDeletePost}
         />
     } else if(props.post.type === 'album') {
-        return <AlbumPost post={props.post} />
+        return <AlbumPost 
+            post={props.post} 
+            handleDeletePost={props.handleDeletePost}
+        />
     } else if(props.post.type === 'artist') {
-        return <ArtistPost post={props.post} />
+        return <ArtistPost 
+            post={props.post} 
+            handleDeletePost={props.handleDeletePost}
+        />
     } else 
         return <Link to='/'/>
 }
