@@ -4,7 +4,7 @@ import '../PostCard.css';
 const AlbumPost = (props) => {
     return (
         <div className='post'>
-            <h5>{props.post.user}</h5>
+            <h5>{props.post.userName}</h5>
             <h1>ALBUM</h1>
             <h3>{props.post.album}</h3>
             <dl>

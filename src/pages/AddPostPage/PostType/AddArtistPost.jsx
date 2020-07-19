@@ -8,7 +8,7 @@ class AddArtistPost extends Component {
       artist: '',
       description: '',
       comments: [],
-      user: this.props.user.name
+      userName: this.props.user.name
     }
   }
 

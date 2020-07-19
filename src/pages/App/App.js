@@ -13,6 +13,7 @@ import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService';
 import * as postService from '../../utils/postService';
+import * as spotifyAPI from '../../utils/spotifyApi';
 
 class App extends Component {
   constructor() {
@@ -30,6 +31,11 @@ class App extends Component {
   handleAddPost = async newPostData => {
     await postService.createPostAPI(newPostData);
     this.getAllPosts();
+  }
+
+  handleNewPost = async (type, topic) => {
+    const newPost = await spotifyAPI.getInfoAPI(topic, type);
+    console.log(newPost);
   }
 
   handleDeletePost = async postId => {
@@ -62,7 +68,7 @@ class App extends Component {
             user={this.state.user} 
             handleLogout={this.handleLogout}
         />
-        <header className="App-header">Songs Songs Songs</header>
+        <header className="App-header">Music Connection</header>
         <Switch>
           <Route exact path='/' render={({ history }) =>
             userService.getUser() ?
@@ -72,6 +78,7 @@ class App extends Component {
                 user={this.state.user}
                 handleLogout={this.handleLogout}
                 handleDeletePost={this.handleDeletePost}
+                handleNewPost={this.handleNewPost}
               />
             :
               <Redirect to='/login' />
@@ -101,6 +108,7 @@ class App extends Component {
             <AddSongPost 
               user={this.state.user}
               handleAddPost={this.handleAddPost}
+              handleNewPost={this.handleNewPost}
             />
           }/>
           <Route exact path='/add/album' render={() =>

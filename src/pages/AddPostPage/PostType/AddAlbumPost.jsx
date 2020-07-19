@@ -9,7 +9,8 @@ class AddAlbumPost extends Component {
           artist: '',
           description: '',
           comments: [],
-          user: this.props.user.name
+          userName: this.props.user.name,
+          user: this.props.user._id
         }
     }
   

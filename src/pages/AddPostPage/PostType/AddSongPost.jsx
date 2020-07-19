@@ -10,7 +10,9 @@ class AddSongPost extends Component {
         artist: '',
         description: '',
         comments: [],
-        user: this.props.user.name
+        type: '',
+        topic: '',
+        userName: this.props.user.name
       }
     }
 
@@ -27,18 +29,37 @@ class AddSongPost extends Component {
       });
     };
     
+    handleNewSubmit = e => {
+      e.preventDefault();
+      this.props.handleNewPost(this.state.formData.type, this.state.formData.topic)
+    }
+
     render(){
       return (
         <>
           <h1>Add a song</h1>
-          <form action="/api/posts/search" method="GET">
-            <div className="input-group">
-              <input type="text" name="username" className="form-control"
-                placeholder="Enter a Track" />
-              <span className="input-group-btn">
-                <button className="btn btn-success" type="submit">Go!</button>
-              </span>
+          <form onSubmit={this.handleNewSubmit}>
+            <div >
+              <input 
+                name="type" 
+                value={this.state.formData.type}
+                placeholder="Enter a Track" 
+                onChange={this.handleChange}
+              />
             </div>
+            <div >
+              <input 
+                name="topic" 
+                value={this.state.formData.topic}
+                placeholder="Enter a topic search" 
+                onChange={this.handleChange}
+              />
+            </div>
+            <button 
+              type="submit"
+            >
+              Add Song
+            </button>
           </form>
           <form onSubmit={this.handleSubmit}>
             <div>

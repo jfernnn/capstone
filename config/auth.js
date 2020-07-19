@@ -6,7 +6,7 @@ module.exports = function(req, res, next) {
     if(fullTokenString) {
         const parsedTokenString = fullTokenString.replace('Bearer ', '');
         jwt.verify(parsedTokenString, SECRET, function(err, decodedToken) {
-            console.log(decodedToken, '--DecodedToken');
+            //console.log(decodedToken, '--DecodedToken');
             if(err) {
                 next(err);
             } else {
