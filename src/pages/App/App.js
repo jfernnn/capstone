@@ -12,6 +12,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService';
+import * as postService from '../../utils/postService';
 
 class App extends Component {
   constructor() {
@@ -22,18 +23,27 @@ class App extends Component {
     }
   }
 
-  handleAddPost = (newPostData) => {
-    newPostData._id = this.state.posts.length + 1;
-    console.log(newPostData);
-    this.setState({
-      posts: [...this.state.posts, newPostData]
-    }, () => this.props.history.push('/'));
+  async componentDidMount() {
+    this.getAllPosts();
   }
 
-  handleDeletePost = postId => {
+  handleAddPost = async newPostData => {
+    await postService.createPostAPI(newPostData);
+    this.getAllPosts();
+  }
+
+  handleDeletePost = async postId => {
+    await postService.deletePostAPI(postId);
     this.setState(state => ({
       posts: state.posts.filter(post => post._id !== postId)
     }), () => this.props.history.push('/'));
+  }
+
+  getAllPosts = async () => {
+    const posts = await postService.getAllPostsAPI();
+    this.setState({
+      posts
+    }, () => this.props.history.push('/'));
   }
 
   handleLogout = () => {

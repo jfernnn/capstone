@@ -10,6 +10,7 @@ function MainPage(props) {
                     key={post._id}
                     post={post}
                     handleDeletePost={props.handleDeletePost}
+                    history={props.history}
                 />
             )}
             <button><Link to='/options'>Options</Link></button>

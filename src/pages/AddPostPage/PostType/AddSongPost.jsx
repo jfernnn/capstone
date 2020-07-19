@@ -9,6 +9,7 @@ class AddSongPost extends Component {
         album: '',
         artist: '',
         description: '',
+        comments: [],
         user: this.props.user.name
       }
     }
@@ -31,11 +32,11 @@ class AddSongPost extends Component {
         <>
           <h1>Add a song</h1>
           <form action="/api/posts/search" method="GET">
-            <div class="input-group">
-              <input type="text" name="username" class="form-control"
+            <div className="input-group">
+              <input type="text" name="username" className="form-control"
                 placeholder="Enter a Track" />
-              <span class="input-group-btn">
-                <button class="btn btn-success" type="submit">Go!</button>
+              <span className="input-group-btn">
+                <button className="btn btn-success" type="submit">Go!</button>
               </span>
             </div>
           </form>
