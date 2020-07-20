@@ -4,6 +4,7 @@ class Comment extends Component {
     state = {
         formData: {
           comment: '',
+          postId: this.props.postId,
           userName: this.props.user.name
         }
     }

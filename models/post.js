@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema ({
     comment: String,
+    postId: String,
     userName: String
 }, {
     timestamps: true

@@ -2,10 +2,10 @@
 const BASE_URL = 'https://api.spotify.com/v1/search';
 
 export function getInfoAPI(name, type) {
-    return fetch(`${BASE_URL}?q=${name}&type=${type}`, {
+    return fetch(`${BASE_URL}?q=${name}&type=${type}&limit=10`, {
         headers: {
             'Content-type': 'application/json',
-            'Authorization': `Bearer BQD6O1KSkZM8P6Jq5S0vTKps9ePNUuDACUZwwfw8W-f86gjMrbpw6_8b6InEbnd7zGLnM8FCLMl81zDHlm9MTPFVeVmjve0zuDYqlIHl47kv0fz6EC8qCl5BDGa328TjpIyPJkmJKHtybhc`
+            'Authorization': `Bearer BQDFhOh_310LLfDRQYyhtryWtagY5de2UxF_IPEnXXFPZr7fdX3I9iB3yAm1SH4NRvHCqpYLJYJWuh8604PdPGlrfKBe0HFBKSBFZirYbD95TQ12HdiDwAZb2P1P56RPtAjICFvZFo5RlBg`
         },
     })
     .then(res => res.json())

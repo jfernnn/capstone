@@ -3,9 +3,11 @@ const {Comment} = require('../models/post')
 
 module.exports = {
     index,
+    commentsIndex,
     create,
     createComment,
-    delete: deleteOne
+    delete: deleteOne,
+    deleteComment
 }
 
 
@@ -14,6 +16,20 @@ async function index(req, res) {
     try {
         const posts = await Post.find();
         res.status(200).json(posts);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}
+
+
+async function commentsIndex(req, res) {
+    try {
+        const comments = await Comment.find();
+        postComments = [];
+        comments.map(comment => {
+            if(comment.postId === req.params.id) postComments.push(comment);
+        })
+        res.status(200).json(postComments);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -44,8 +60,16 @@ async function deleteOne(req, res) {
     try{
         const deletedPost = await Post.findByIdAndRemove(req.params.id);
         res.status(200).json(deletedPost);
+    } catch(err){
+        res.status(500).json(err);
     }
-    catch(err){
+}
+
+async function deleteComment(req, res) {
+    try {
+        const deletedComment = await Comment.findByIdAndRemove(req.params.id);
+        res.status(200).json(deletedComment)
+    } catch(err) {
         res.status(500).json(err);
     }
 }

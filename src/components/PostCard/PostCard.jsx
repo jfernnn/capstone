@@ -10,11 +10,12 @@ class PostCard extends Component {
     }
 
     handleAddComment = async (newComment) => {
-        console.log('the n ew comment - ', newComment.comment, '  akk the comments - ', newComment.userName);
-        const comments = await postService.createCommentAPI(newComment);
-        console.log(comments)
+        console.log('the n ew comment - ', newComment.comment, '  akk the comments - ', newComment.userName, '--id', newComment.postId);
+        await postService.createCommentAPI(newComment);
+        const allComments = await postService.getAllCommentsAPI(this.props.post._id);
+        console.log(allComments)
         this.setState({
-            comments
+            comments: [allComments]
         }, () => this.props.history.push('/'));
     }
     // handleAddComment = (newComment) => {
@@ -29,7 +30,7 @@ class PostCard extends Component {
         return (
             //this.handleTypeOfComment(this.props)
             <div className='post'>
-            <h5>{this.props.post.userName}</h5>
+            <Link to='/sorted'><h5>{this.props.post.userName}</h5></Link>
             <h1>{this.props.post.type}</h1>
             {this.props.post.title ? <h3>{this.props.post.title}</h3> : <span></span>}
             <dl>
@@ -41,18 +42,23 @@ class PostCard extends Component {
                 }
                 <dd>{this.props.post.description}</dd>
             </dl>
+            <div className='post'>
+                        <Comment 
+                            handleAddComment={this.handleAddComment} 
+                            user={this.props.user} 
+                            postId={this.props.post._id}
+                        />
+                        {this.state.comments.map((comment) => 
+                            <h6>{comment.comment} -posted by {comment.userName}</h6>
+                        )}
+            </div>
             <div className='panel-footer'>
                 <button onClick={() => this.props.handleDeletePost(this.props.post._id)}>
                     DELETE
                 </button>
             </div>
-            <div className='post'>
-                        <Comment handleAddComment={this.handleAddComment} user={this.props.user} />
-                        {this.state.comments.map((comment) => 
-                            <h6>{comment.comment} -posted by {comment.userName}</h6>
-                        )}
-                    </div>
             </div>
+            
         )
     }
 }

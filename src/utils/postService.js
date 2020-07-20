@@ -24,6 +24,24 @@ export function createPostAPI(postToCreate) {
     }).then(newPost => newPost.json());
 }
 
+export function deletePostAPI(postIdToDelete) {
+    return fetch(`${BASE_URL}/${postIdToDelete}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${tokenService.getToken()}`
+        }
+    }).then(deletedPost => deletedPost.json());
+}
+
+export function getAllCommentsAPI(postId) {
+    return fetch(`${BASE_URL}/${postId}/comments`, {
+        headers: {
+          'Authorization': `Bearer ${tokenService.getToken()}`
+        }
+    })
+    .then(res => res.json());
+}
+
 export function createCommentAPI(commentToCreate) {
     return fetch(`${BASE_URL}/comment`, {
         method: 'POST',
@@ -35,8 +53,8 @@ export function createCommentAPI(commentToCreate) {
     }).then(newComment => newComment.json());
 }
 
-export function deletePostAPI(postIdToDelete) {
-    return fetch(`${BASE_URL}/${postIdToDelete}`, {
+export function deleteCommentAPI(commentIdToDelete) {
+    return fetch(`${BASE_URL}/comment/${commentIdToDelete}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${tokenService.getToken()}`
