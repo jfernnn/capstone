@@ -1,3 +1,7 @@
 .addPost {
     color: black;
 }
+
+.post-choice {
+    justify-content: start;
+}

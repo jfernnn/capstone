@@ -6,6 +6,7 @@ import AddPostPage from '../AddPostPage/AddPostPage';
 import AddSongPost from '../AddPostPage/PostType/AddSongPost';
 import AddAlbumPost from '../AddPostPage/PostType/AddAlbumPost';
 import AddArtistPost from '../AddPostPage/PostType/AddArtistPost';
+import AddDeterminePost from '../AddPostPage/AddDeterminePost';
 import NavBar from '../../components/NavBar/NavBar';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
@@ -20,6 +21,7 @@ class App extends Component {
     super();
     this.state = {
       posts: [],
+      items: [],
       user: userService.getUser()
     }
   }
@@ -35,7 +37,23 @@ class App extends Component {
 
   handleNewPost = async (type, topic) => {
     const newPost = await spotifyAPI.getInfoAPI(topic, type);
-    console.log(newPost);
+    console.log(newPost.tracks.items)
+    this.setState({
+      items: newPost.tracks.items
+    }, () => this.props.history.push('/add/determine_post'));
+    //<Redirect to='' />
+  }
+  
+  handleNewNewPost = async (item) => {
+    const newPost = {};
+    newPost.title = item.name;
+    newPost.type = 'track';
+    newPost.artist = item.artists[0].name;
+    newPost.album = item.album.name
+
+    await postService.createPostAPI(newPost)
+    this.getAllPosts();
+    //<Redirect to='' />
   }
 
   handleDeletePost = async postId => {
@@ -47,6 +65,7 @@ class App extends Component {
 
   getAllPosts = async () => {
     const posts = await postService.getAllPostsAPI();
+    console.log('-----',posts)
     this.setState({
       posts
     }, () => this.props.history.push('/'));
@@ -96,6 +115,12 @@ class App extends Component {
             <LoginPage
               history={history}
               handleSignupOrLogin={this.handleSignupOrLogin}
+            />
+          }/>
+          <Route exact path='/add/determine_post' render={() => 
+            <AddDeterminePost 
+              items={this.state.items}
+              handleNewNewPost={this.handleNewNewPost}
             />
           }/>
           <Route exact path='/add' render={() =>
