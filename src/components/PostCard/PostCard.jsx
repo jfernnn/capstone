@@ -30,7 +30,7 @@ class PostCard extends Component {
         return (
             //this.handleTypeOfComment(this.props)
             <div className='post'>
-            <Link to='/sorted'><h5>{this.props.post.userName}</h5></Link>
+           <h5>{this.props.post.userName}</h5>
             <h1>{this.props.post.type}</h1>
             {this.props.post.title ? <h3>{this.props.post.title}</h3> : <span></span>}
             <dl>
