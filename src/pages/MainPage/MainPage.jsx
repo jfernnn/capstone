@@ -21,11 +21,6 @@ function MainPage(props) {
             </div>
             <div></div>
         </div>
-        <div className="btn-class">
-            <button><Link to='/options'>Options</Link></button>
-            <br></br>
-            <button><Link to='/add'>Add a Post</Link></button>
-        </div>
     </div>
     );
 };

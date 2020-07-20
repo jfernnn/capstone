@@ -1,7 +1,8 @@
 .NavBar {
-    display: flex;
-    justify-content: center;
-    margin: 0 0 20px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0 0 10px 15px
   }
   
   .NavBar-link {
@@ -9,5 +10,24 @@
   }
   
   .NavBar-welcome {
-    color: grey;
+    color: rgb(204, 180, 136);
+  }
+
+  .NavBtn {
+      border-style: none;
+      font-size: 16px;
+      border-radius: 35%;
+      margin-left: 20px;
+      background-color: rgb(4, 19, 99);
+  }
+
+  .NavBtnTxt {
+    color: rgb(236, 164, 29); 
+  }
+
+
+  .NavBtn:hover {
+    color: rgb(56, 69, 139); 
+    text-decoration: none;
+    background-color: rgb(255, 206, 44); 
   }

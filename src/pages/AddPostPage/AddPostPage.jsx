@@ -56,7 +56,7 @@ class AddPostPage extends Component{
               <button 
                 type="submit"
               >
-                Add Song
+                Look up
               </button>
             </form>
             <Link to='/'>Cancel</Link>

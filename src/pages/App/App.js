@@ -103,11 +103,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <header className="App-header">
         <NavBar 
             user={this.state.user} 
             handleLogout={this.handleLogout}
         />
-        <header className="App-header">Music Connection</header>
+        </header>
+        <div className="Body">
         <Switch>
           <Route exact path='/' render={({ history }) =>
             userService.getUser() ?
@@ -151,6 +153,7 @@ class App extends Component {
             />
           }/>
         </Switch>
+        </div>
       </div>
     );
   }

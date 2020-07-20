@@ -17,7 +17,12 @@ const NavBar = (props) => {
     </div>;
   return (
     <div className='NavBar'>
-      {nav}
+        <div>{nav}</div>
+        <div>Music Connection</div>
+        <div>
+            <Link to='/options' className='NavBtnTxt'>Options</Link>
+            <Link to='/add' className='NavBtnTxt'>Add A Post</Link>
+        </div>
     </div>
   );
 };
