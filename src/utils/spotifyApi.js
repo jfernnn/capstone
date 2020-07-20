@@ -5,7 +5,7 @@ export function getInfoAPI(name, type) {
     return fetch(`${BASE_URL}?q=${name}&type=${type}`, {
         headers: {
             'Content-type': 'application/json',
-            'Authorization': `Bearer BQD69anzH-KpK6NnRbJlz6kUSvCgo3Sbipgs9czTBiw3_oJtri9hQJsyfMiMtYbOsVlO7c1cqDtespDFStQ8LqFgRP-qL3EP-YOYo-EUt6h0b2FYN20XRFxw_cU1l3oGFi4z9lMtOqtnXI8`
+            'Authorization': `Bearer BQD6O1KSkZM8P6Jq5S0vTKps9ePNUuDACUZwwfw8W-f86gjMrbpw6_8b6InEbnd7zGLnM8FCLMl81zDHlm9MTPFVeVmjve0zuDYqlIHl47kv0fz6EC8qCl5BDGa328TjpIyPJkmJKHtybhc`
         },
     })
     .then(res => res.json())

@@ -19,6 +19,7 @@ class App extends Component {
     this.state = {
       posts: [],
       items: [],
+      description: '',
       user: userService.getUser()
     }
   }
@@ -34,19 +35,19 @@ class App extends Component {
     if(newPost.type === 'track')  {
       console.log(newPost.tracks.items)
       this.setState({
-        items: newPost.tracks.items
+        items: newPost.tracks.items, description: post.description
       }, () => this.props.history.push('/add/determine_post'));
     }
     if(newPost.type === 'artist') {
       console.log(newPost.artists.items)
       this.setState({
-        items: newPost.artists.items
+        items: newPost.artists.items, description: post.description
       }, () => this.props.history.push('/add/determine_post'));
     }
     if(newPost.type === 'album') {
       console.log(newPost.albums.items)
       this.setState({
-        items: newPost.albums.items
+        items: newPost.albums.items, description: post.description
       }, () => this.props.history.push('/add/determine_post'));
     };
     //<Redirect to='' />
@@ -69,6 +70,7 @@ class App extends Component {
     }
     newPost.type = item.type;
     newPost.userName = uN;
+    newPost.description = this.state.description;
     await postService.createPostAPI(newPost)
     this.getAllPosts();
     //<Redirect to='' />

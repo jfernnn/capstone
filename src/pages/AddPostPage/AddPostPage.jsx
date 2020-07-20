@@ -5,6 +5,7 @@ import './AddPostPeg.css'
 class AddPostPage extends Component{
     state = {
         formData: {
+          description: '',
           type: '',
           topic: '',
           userName: this.props.user.name
@@ -46,6 +47,12 @@ class AddPostPage extends Component{
                   onChange={this.handleChange}
                 />
               </div>
+              <input 
+                  name="description" 
+                  value={this.state.formData.description}
+                  placeholder="Enter the description" 
+                  onChange={this.handleChange}
+                />
               <button 
                 type="submit"
               >

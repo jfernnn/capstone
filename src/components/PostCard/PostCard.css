@@ -1,4 +1,5 @@
 .post {
+    display: grid;
     border: solid;
     margin: 5px 60px;
     max-width: 800px;
