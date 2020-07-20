@@ -30,7 +30,7 @@ class PostCard extends Component {
         return (
             //this.handleTypeOfComment(this.props)
             <div className='post'>
-           <h5>{this.props.post.userName}</h5>
+            <h5>{this.props.post.userName}</h5>
             <h1>{this.props.post.type}</h1>
             {this.props.post.title ? <h3>{this.props.post.title}</h3> : <span></span>}
             <dl>
@@ -42,17 +42,24 @@ class PostCard extends Component {
                 }
                 <dd>{this.props.post.description}</dd>
             </dl>
-            <div className='post'>
+            <div className='comments'>
+                <div></div>
+                <details className='comment-section'>
+                    <summary className='comment'>COMMENTS</summary>
+                    <ul>
                         <Comment 
                             handleAddComment={this.handleAddComment} 
                             user={this.props.user} 
                             postId={this.props.post._id}
                         />
                         {this.state.comments.map((comment) => 
-                            <h6>{comment.comment} -posted by {comment.userName}</h6>
+                            <li><h6>{comment.comment} -posted by {comment.userName}</h6></li>
                         )}
+                        </ul>
+                </details>
+                <div></div>
             </div>
-            <div className='panel-footer'>
+            <div className='delete-btn'>
                 <button onClick={() => this.props.handleDeletePost(this.props.post._id)}>
                     DELETE
                 </button>

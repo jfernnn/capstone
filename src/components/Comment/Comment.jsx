@@ -23,7 +23,6 @@ class Comment extends Component {
     render() {
     return (
         <div>
-            <h4>COMMENTS</h4>
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <label>Add Comment</label>
