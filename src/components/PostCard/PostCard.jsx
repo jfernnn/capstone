@@ -20,7 +20,7 @@ class PostCard extends Component {
     }
     
     handleTypeOfComment(props) {
-        if(props.post.type === 'song') {
+        if(props.post.type === 'track') {
             return ( 
                 <div className='post'>
                     <SongPost 
@@ -50,7 +50,28 @@ class PostCard extends Component {
     }
     render() {
         return (
-            this.handleTypeOfComment(this.props)
+            //this.handleTypeOfComment(this.props)
+            <div className='post'>
+            <h5>{this.props.post.userName}</h5>
+            <h1>{this.props.post.type}</h1>
+            {this.props.post.title ? <h3>{this.props.post.title}</h3> : <span></span>}
+            <dl>
+                {this.props.post.album ? <dd>{this.props.post.album}</dd> : <span></span>}
+                <dd>{this.props.post.artist}</dd>
+                <dd>{this.props.post.description}</dd>
+            </dl>
+            <div className='panel-footer'>
+                <button onClick={() => this.props.handleDeletePost(this.props.post._id)}>
+                    DELETE
+                </button>
+            </div>
+            <div className='post'>
+                        <Comment handleAddComment={this.handleAddComment}/>
+                        {this.state.comments.map((comment) => 
+                            <h6>{comment}</h6>
+                        )}
+                    </div>
+            </div>
         )
     }
 }
