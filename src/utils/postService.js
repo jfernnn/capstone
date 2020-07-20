@@ -24,6 +24,17 @@ export function createPostAPI(postToCreate) {
     }).then(newPost => newPost.json());
 }
 
+export function createCommentAPI(commentToCreate) {
+    return fetch(`${BASE_URL}/comment`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+          'Authorization': `Bearer ${tokenService.getToken()}`
+        },
+        body: JSON.stringify(commentToCreate)
+    }).then(newComment => newComment.json());
+}
+
 export function deletePostAPI(postIdToDelete) {
     return fetch(`${BASE_URL}/${postIdToDelete}`, {
         method: 'DELETE',

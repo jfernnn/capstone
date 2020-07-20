@@ -4,12 +4,13 @@ class Comment extends Component {
     state = {
         formData: {
           comment: '',
+          userName: this.props.user.name
         }
     }
   
     handleSubmit = e => {
         e.preventDefault();
-        this.props.handleAddComment(this.state.formData.comment);
+        this.props.handleAddComment(this.state.formData);
     };
   
     handleChange = e => {

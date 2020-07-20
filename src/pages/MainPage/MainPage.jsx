@@ -7,6 +7,7 @@ function MainPage(props) {
         <div>
             {props.posts.map(post => 
                 <PostCard
+                    user={props.user}
                     key={post._id}
                     post={post}
                     handleDeletePost={props.handleDeletePost}

@@ -27,11 +27,6 @@ class App extends Component {
     this.getAllPosts();
   }
 
-  handleAddPost = async newPostData => {
-    await postService.createPostAPI(newPostData);
-    this.getAllPosts();
-  }
-
   handleNewPost = async (post) => {
     const newPost = await spotifyAPI.getInfoAPI(post.topic, post.type);
     newPost.type = post.type;
@@ -57,7 +52,7 @@ class App extends Component {
     //<Redirect to='' />
   }
   
-  handleNewNewPost = async (item) => {
+  handleNewNewPost = async (item, uN) => {
     const newPost = {};
     if(item.type === 'track') {
       newPost.title = item.name;
@@ -73,7 +68,7 @@ class App extends Component {
       newPost.artist = item.name;
     }
     newPost.type = item.type;
-
+    newPost.userName = uN;
     await postService.createPostAPI(newPost)
     this.getAllPosts();
     //<Redirect to='' />
@@ -142,6 +137,7 @@ class App extends Component {
           }/>
           <Route exact path='/add/determine_post' render={() => 
             <AddDeterminePost 
+              user={this.state.user}
               items={this.state.items}
               handleNewNewPost={this.handleNewNewPost}
             />
@@ -149,7 +145,6 @@ class App extends Component {
           <Route exact path='/add' render={() =>
             <AddPostPage 
               user={this.state.user}
-              handleAddPost={this.handleAddPost}
               handleNewPost={this.handleNewPost}
             />
           }/>

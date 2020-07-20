@@ -1,6 +1,7 @@
 .post {
     border: solid;
-    margin: 5px 60vh;
+    margin: 5px 60px;
+    max-width: 800px;
     opacity: .78;
 }
 

@@ -3,10 +3,12 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema ({
     comment: String,
-    user: String
+    userName: String
 }, {
     timestamps: true
 });
+
+const commentModel = mongoose.model('Comment', commentSchema);
 
 const postSchema = new Schema({
     type: {
@@ -37,4 +39,11 @@ const postSchema = new Schema({
     timestamps: true 
 });
 
-module.exports = mongoose.model('Post', postSchema);
+const postModel = mongoose.model('Post', postSchema);
+
+
+module.exports = {
+    'Post': postModel,
+    'Comment': commentModel
+
+}

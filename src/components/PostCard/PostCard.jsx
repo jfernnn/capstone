@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Comment from '../Comment/Comment';
+import * as postService from '../../../src/utils/postService'
 import './PostCard.css'
 
 class PostCard extends Component {
@@ -9,13 +9,21 @@ class PostCard extends Component {
         comments: [],
     }
 
-    handleAddComment = (newComment) => {
-        console.log('the n ew comment - ', newComment, '  akk the comments - ', this.state.comments);
-        this.props.post.comments = [...this.props.post.comments, newComment];
+    handleAddComment = async (newComment) => {
+        console.log('the n ew comment - ', newComment.comment, '  akk the comments - ', newComment.userName);
+        const comments = await postService.createCommentAPI(newComment);
+        console.log(comments)
         this.setState({
-            comments: [...this.state.comments, newComment]
+            comments
         }, () => this.props.history.push('/'));
     }
+    // handleAddComment = (newComment) => {
+    //     console.log('the n ew comment - ', newComment.comment, '  akk the comments - ', this.state.comments);
+    //     this.props.post.comments = [...this.props.post.comments, newComment];
+    //     this.setState({
+    //         comments: [...this.state.comments, newComment]
+    //     }, () => this.props.history.push('/'));
+    // }
 
     render() {
         return (
@@ -39,9 +47,9 @@ class PostCard extends Component {
                 </button>
             </div>
             <div className='post'>
-                        <Comment handleAddComment={this.handleAddComment}/>
+                        <Comment handleAddComment={this.handleAddComment} user={this.props.user} />
                         {this.state.comments.map((comment) => 
-                            <h6>{comment}</h6>
+                            <h6>{comment.comment} -posted by {comment.userName}</h6>
                         )}
                     </div>
             </div>

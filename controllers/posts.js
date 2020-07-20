@@ -1,8 +1,10 @@
-const Post = require('../models/post');
+const {Post} = require('../models/post');
+const {Comment} = require('../models/post')
 
 module.exports = {
     index,
     create,
+    createComment,
     delete: deleteOne
 }
 
@@ -24,6 +26,17 @@ async function create(req, res) {
         res.status(201).json(post);
     } catch(err) {
         res.status(500).json(err);
+    }
+}
+
+async function createComment(req, res) {
+    console.log('uoi mane it')
+    req.body.user = req.user._id;
+    try {
+        const comment = await Comment.create(req.body);
+        res.status(201).json(comment);
+    } catch(err) {
+        res.status(500).json(err)
     }
 }
 

@@ -2,6 +2,7 @@ const router = require('express').Router();
 const postsCtrl = require('../../controllers/posts');
 
 router.get('/', checkAuth, postsCtrl.index);
+router.get('/comment', checkAuth, postsCtrl.createComment);
 router.post('/', checkAuth, postsCtrl.create);
 router.delete('/:id', checkAuth, postsCtrl.delete);
 
