@@ -3,9 +3,6 @@ import './App.css';
 import MainPage from '../MainPage/MainPage';
 import OptionsPage from '../OptionsPage/OptionsPage';
 import AddPostPage from '../AddPostPage/AddPostPage';
-import AddSongPost from '../AddPostPage/PostType/AddSongPost';
-import AddAlbumPost from '../AddPostPage/PostType/AddAlbumPost';
-import AddArtistPost from '../AddPostPage/PostType/AddArtistPost';
 import AddDeterminePost from '../AddPostPage/AddDeterminePost';
 import NavBar from '../../components/NavBar/NavBar';
 
@@ -35,22 +32,23 @@ class App extends Component {
     this.getAllPosts();
   }
 
-  handleNewPost = async (type, topic) => {
-    const newPost = await spotifyAPI.getInfoAPI(topic, type);
-    newPost.type = type;
-    if(type === 'track')  {
+  handleNewPost = async (post) => {
+    const newPost = await spotifyAPI.getInfoAPI(post.topic, post.type);
+    newPost.type = post.type;
+    newPost.userName = post.userName;
+    if(newPost.type === 'track')  {
       console.log(newPost.tracks.items)
       this.setState({
         items: newPost.tracks.items
       }, () => this.props.history.push('/add/determine_post'));
     }
-    if(type === 'artist') {
+    if(newPost.type === 'artist') {
       console.log(newPost.artists.items)
       this.setState({
         items: newPost.artists.items
       }, () => this.props.history.push('/add/determine_post'));
     }
-    if(type === 'album') {
+    if(newPost.type === 'album') {
       console.log(newPost.albums.items)
       this.setState({
         items: newPost.albums.items
@@ -152,25 +150,7 @@ class App extends Component {
             <AddPostPage 
               user={this.state.user}
               handleAddPost={this.handleAddPost}
-            />
-          }/>
-          <Route exact path='/add/song' render={() =>
-            <AddSongPost 
-              user={this.state.user}
-              handleAddPost={this.handleAddPost}
               handleNewPost={this.handleNewPost}
-            />
-          }/>
-          <Route exact path='/add/album' render={() =>
-            <AddAlbumPost 
-              user={this.state.user}
-              handleAddPost={this.handleAddPost}
-            />
-          }/>
-          <Route exact path='/add/artist' render={() =>
-            <AddArtistPost 
-              user={this.state.user}
-              handleAddPost={this.handleAddPost}
             />
           }/>
         </Switch>
