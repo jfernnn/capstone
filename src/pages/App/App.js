@@ -37,19 +37,44 @@ class App extends Component {
 
   handleNewPost = async (type, topic) => {
     const newPost = await spotifyAPI.getInfoAPI(topic, type);
-    console.log(newPost.tracks.items)
-    this.setState({
-      items: newPost.tracks.items
-    }, () => this.props.history.push('/add/determine_post'));
+    newPost.type = type;
+    if(type === 'track')  {
+      console.log(newPost.tracks.items)
+      this.setState({
+        items: newPost.tracks.items
+      }, () => this.props.history.push('/add/determine_post'));
+    }
+    if(type === 'artist') {
+      console.log(newPost.artists.items)
+      this.setState({
+        items: newPost.artists.items
+      }, () => this.props.history.push('/add/determine_post'));
+    }
+    if(type === 'album') {
+      console.log(newPost.albums.items)
+      this.setState({
+        items: newPost.albums.items
+      }, () => this.props.history.push('/add/determine_post'));
+    };
     //<Redirect to='' />
   }
   
   handleNewNewPost = async (item) => {
     const newPost = {};
-    newPost.title = item.name;
-    newPost.type = 'track';
-    newPost.artist = item.artists[0].name;
-    newPost.album = item.album.name
+    if(item.type === 'track') {
+      newPost.title = item.name;
+      newPost.album = item.album.name;
+      newPost.artist = item.artists[0].name;
+    } else if(item.type === 'album') {
+      newPost.title = null;
+      newPost.album = item.name;
+      newPost.artist = item.artists[0].name;
+    } else if(item.type === 'artist') {
+      newPost.title = null;
+      newPost.album = null;
+      newPost.artist = item.name;
+    }
+    newPost.type = item.type;
 
     await postService.createPostAPI(newPost)
     this.getAllPosts();

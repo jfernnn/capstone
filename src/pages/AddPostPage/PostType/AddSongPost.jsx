@@ -61,49 +61,6 @@ class AddSongPost extends Component {
               Add Song
             </button>
           </form>
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              <label>Song Title</label>
-              <input 
-                name='title'
-                value={this.state.formData.title}
-                onChange={this.handleChange}
-                required
-              />
-            </div>
-            <div>
-              <label>Song Artist</label>
-              <input 
-                name='artist'
-                value={this.state.formData.artist}
-                onChange={this.handleChange}
-                required
-              />
-            </div>
-            <div>
-              <label>Song Album</label>
-              <input 
-                name='album'
-                value={this.state.formData.album}
-                onChange={this.handleChange}
-                required
-              />
-            </div>
-            <div>
-              <label>Description</label>
-              <input 
-                name='description'
-                value={this.state.formData.description}
-                onChange={this.handleChange}
-                required
-              />
-            </div>
-            <button 
-              type="submit"
-            >
-              Add Song
-            </button>
-          </form>
           <Link to='/'>Cancel</Link>
         </>
       )
