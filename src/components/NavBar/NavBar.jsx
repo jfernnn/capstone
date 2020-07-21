@@ -18,7 +18,7 @@ const NavBar = (props) => {
   return (
     <div className='NavBar'>
         <div>{nav}</div>
-        <div>Music Connection</div>
+        <div><Link to='/' className='NavBtnTxt'>Music Connection</Link></div>
         <div>
             <Link to='/options' className='NavBtnTxt'>Options</Link>
             <Link to='/add' className='NavBtnTxt'>Add A Post</Link>

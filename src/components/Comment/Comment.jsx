@@ -26,7 +26,9 @@ class Comment extends Component {
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <label>Add Comment</label>
-                    <input 
+                    <br></br>
+                    <textarea 
+                        className='comment-text-area'
                         name='comment'
                         value={this.state.formData.comment}
                         onChange={this.handleChange}

@@ -18,8 +18,12 @@
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
   background-color: #282c34;
-  font-size: 20px;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  font-size: 24px;
   color: rgb(223, 209, 146);
+  z-index: 9999;
 }
 
 .App-link {
@@ -27,7 +31,7 @@
 }
 
 .Body {
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 @keyframes App-logo-spin {

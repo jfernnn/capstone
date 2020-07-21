@@ -3,8 +3,11 @@ import tokenService from './tokenService';
 const BASE_URL = '/api/posts';
 
 export function getAllPostsAPI() {
+    console.log('made it to getallpostsapi')
     return fetch(BASE_URL, {
+        method: 'GET',
         headers: {
+          'Content-type': 'application/json',
           'Authorization': `Bearer ${tokenService.getToken()}`
         }
     })
@@ -26,35 +29,6 @@ export function createPostAPI(postToCreate) {
 
 export function deletePostAPI(postIdToDelete) {
     return fetch(`${BASE_URL}/${postIdToDelete}`, {
-        method: 'DELETE',
-        headers: {
-            'Authorization': `Bearer ${tokenService.getToken()}`
-        }
-    }).then(deletedPost => deletedPost.json());
-}
-
-export function getAllCommentsAPI(postId) {
-    return fetch(`${BASE_URL}/${postId}/comments`, {
-        headers: {
-          'Authorization': `Bearer ${tokenService.getToken()}`
-        }
-    })
-    .then(res => res.json());
-}
-
-export function createCommentAPI(commentToCreate) {
-    return fetch(`${BASE_URL}/comment`, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-          'Authorization': `Bearer ${tokenService.getToken()}`
-        },
-        body: JSON.stringify(commentToCreate)
-    }).then(newComment => newComment.json());
-}
-
-export function deleteCommentAPI(commentIdToDelete) {
-    return fetch(`${BASE_URL}/comment/${commentIdToDelete}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${tokenService.getToken()}`

@@ -3,13 +3,17 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema ({
     comment: String,
-    postId: String,
+    date: {
+        type: Date, 
+        default: function() {
+            return new Date();
+        },
+        required: true
+    },
     userName: String
 }, {
     timestamps: true
 });
-
-const commentModel = mongoose.model('Comment', commentSchema);
 
 const postSchema = new Schema({
     type: {
@@ -40,11 +44,4 @@ const postSchema = new Schema({
     timestamps: true 
 });
 
-const postModel = mongoose.model('Post', postSchema);
-
-
-module.exports = {
-    'Post': postModel,
-    'Comment': commentModel
-
-}
+module.exports =  mongoose.model('Post', postSchema);

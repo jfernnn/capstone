@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import Comment from '../Comment/Comment';
-import * as postService from '../../../src/utils/postService'
+import * as commentService from '../../../src/utils/commentService';
 import './PostCard.css'
 
 class PostCard extends Component {
 
     state = {
+        postData: this.props.post,
         comments: [],
     }
 
     handleAddComment = async (newComment) => {
         console.log('the n ew comment - ', newComment.comment, '  akk the comments - ', newComment.userName, '--id', newComment.postId);
-        await postService.createCommentAPI(newComment);
-        const allComments = await postService.getAllCommentsAPI(this.props.post._id);
-        console.log(allComments)
+        const updatedPost = await commentService.createCommentAPI(newComment);
         this.setState({
-            comments: [allComments]
+            postData: updatedPost
         }, () => this.props.history.push('/'));
     }
     // handleAddComment = (newComment) => {
@@ -47,15 +46,15 @@ class PostCard extends Component {
                 <details className='comment-section'>
                     <summary className='comment'>COMMENTS</summary>
                     <ul>
+                        {this.state.postData.comments.map((comment, key) => 
+                            <li key={key}><h6>{comment.comment} -posted by {comment.userName}</h6></li>
+                        )}
                         <Comment 
                             handleAddComment={this.handleAddComment} 
                             user={this.props.user} 
                             postId={this.props.post._id}
                         />
-                        {this.state.comments.map((comment) => 
-                            <li><h6>{comment.comment} -posted by {comment.userName}</h6></li>
-                        )}
-                        </ul>
+                    </ul>
                 </details>
                 <div></div>
             </div>

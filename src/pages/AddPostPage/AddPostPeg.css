@@ -5,3 +5,16 @@
 .post-choice {
     justify-content: start;
 }
+
+.add-post {
+    margin-top: 70px;
+}
+
+.add-post-input {
+    margin-top: 15px;
+}
+
+.desc-input {
+    height: 60px;
+    width: 220px;
+}

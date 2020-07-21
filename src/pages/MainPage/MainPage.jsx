@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PostCard from '../../components/PostCard/PostCard';
 import './MainPage.css'
 

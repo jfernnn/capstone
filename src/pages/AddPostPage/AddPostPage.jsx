@@ -25,13 +25,20 @@ class AddPostPage extends Component{
         });
       };
 
+      handleSpotify = e => {
+          e.preventDefault();
+          this.props.loginToSpot();
+      }
   
       render(){
         return (
-          <>
-            <h1>ADD A POST</h1>
+          <div>
+            <h1 className="add-post">ADD A POST</h1>
+            <form onSubmit={this.handleSpotify}>
+                <button type="submit">Obtain a Token</button>
+            </form>
             <form onSubmit={this.handleSubmit}>
-              <div >
+              <div className="add-post-input">
                 <input 
                   name="type" 
                   value={this.state.formData.type}
@@ -39,7 +46,7 @@ class AddPostPage extends Component{
                   onChange={this.handleChange}
                 />
               </div>
-              <div >
+              <div className="add-post-input">
                 <input 
                   name="topic" 
                   value={this.state.formData.topic}
@@ -47,12 +54,15 @@ class AddPostPage extends Component{
                   onChange={this.handleChange}
                 />
               </div>
-              <input 
+              <div className="add-post-input">
+              <textarea 
+                  className="desc-input"
                   name="description" 
                   value={this.state.formData.description}
                   placeholder="Enter the description" 
                   onChange={this.handleChange}
                 />
+              </div>
               <button 
                 type="submit"
               >
@@ -60,7 +70,7 @@ class AddPostPage extends Component{
               </button>
             </form>
             <Link to='/'>Cancel</Link>
-          </>
+          </div>
         )
       }
   };

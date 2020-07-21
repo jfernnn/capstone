@@ -25,6 +25,7 @@ class App extends Component {
   }
 
   async componentDidMount() {
+    console.log('compontent did mount')
     this.getAllPosts();
   }
 
@@ -84,6 +85,7 @@ class App extends Component {
   }
 
   getAllPosts = async () => {
+    console.log('Git all posts')
     const posts = await postService.getAllPostsAPI();
     console.log('-----',posts)
     this.setState({
@@ -100,15 +102,21 @@ class App extends Component {
     this.setState({user: userService.getUser()});
   }
 
+  loginToSpot = async () => {
+    console.log('made it to request')
+    const loggedIn = await spotifyAPI.authorizeSpot();
+    console.log(loggedIn);
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        <div className="App-header">
         <NavBar 
             user={this.state.user} 
             handleLogout={this.handleLogout}
         />
-        </header>
+        </div>
         <div className="Body">
         <Switch>
           <Route exact path='/' render={({ history }) =>
@@ -150,6 +158,7 @@ class App extends Component {
             <AddPostPage 
               user={this.state.user}
               handleNewPost={this.handleNewPost}
+              loginToSpot={this.loginToSpot}
             />
           }/>
         </Switch>
