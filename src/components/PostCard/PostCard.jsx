@@ -29,8 +29,12 @@ class PostCard extends Component {
         return (
             //this.handleTypeOfComment(this.props)
             <div className='post'>
-            <h5>{this.props.post.userName}</h5>
-            <h1>{this.props.post.type}</h1>
+                <div className='post-title'>
+                    <h3 className='post-type'><h6>Posted by:</h6>{this.props.post.userName}</h3>
+                    <h1 className='post-type'>{this.props.post.type}</h1>
+                    <div></div>
+                </div>
+            <div className='post-contents'>
             {this.props.post.title ? <h3>{this.props.post.title}</h3> : <span></span>}
             <dl>
                 {this.props.post.album ? <h4>{this.props.post.album}</h4> : <span></span>}
@@ -41,6 +45,8 @@ class PostCard extends Component {
                 }
                 <dd>{this.props.post.description}</dd>
             </dl>
+            </div>
+            <div className='comments-delete-section'>
             <div className='comments'>
                 <div></div>
                 <details className='comment-section'>
@@ -62,6 +68,7 @@ class PostCard extends Component {
                 <button onClick={() => this.props.handleDeletePost(this.props.post._id)}>
                     DELETE
                 </button>
+            </div>
             </div>
             </div>
             

@@ -17,6 +17,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      token: '',
       posts: [],
       items: [],
       description: '',
@@ -30,7 +31,8 @@ class App extends Component {
   }
 
   handleNewPost = async (post) => {
-    const newPost = await spotifyAPI.getInfoAPI(post.topic, post.type);
+    const newPost = await spotifyAPI.getInfoAPI(post.topic, post.type, this.state.token);
+    console.log(newPost)
     newPost.type = post.type;
     newPost.userName = post.userName;
     if(newPost.type === 'track')  {
@@ -55,6 +57,7 @@ class App extends Component {
   }
   
   handleNewNewPost = async (item, uN) => {
+    console.log(this.state.token);
     const newPost = {};
     if(item.type === 'track') {
       newPost.title = item.name;
@@ -104,8 +107,10 @@ class App extends Component {
 
   loginToSpot = async () => {
     console.log('made it to request')
+    console.log(this.state.token)
     const loggedIn = await spotifyAPI.authorizeSpot();
-    console.log(loggedIn);
+    const token = loggedIn.access_token;
+    this.setState({token});
   }
 
   render() {

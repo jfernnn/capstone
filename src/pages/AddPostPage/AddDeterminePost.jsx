@@ -21,13 +21,13 @@ class AddDeterminePost extends Component {
         return (
             <div>
                 <h1>There's more than one so you'll have to choose ${this.props.user.name}</h1>
-                {this.props.items.map(item => 
-                    <form onSubmit={() => this.handleChoice(item)}>
-                        <p className="post-choice">
+                {this.props.items.map((item, key) => 
+                    <form key={key} onSubmit={() => this.handleChoice(item)}>
+                        <div className="post-choice">
                             <button type="submit">✔</button> 
                             <p>{this.props.items.userName}</p>
                             {this.handlePostType(item)}
-                        </p>
+                        </div>
                     </form>
                 )}
             </div>

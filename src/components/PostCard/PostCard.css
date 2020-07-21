@@ -2,9 +2,27 @@
     display: grid;
     border: solid;
     margin-top: 20px;
-    width: 480px;
+    background-color: #282c34;
+    width: 490px;
     opacity: .86;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.post-type {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: white;
+}
+
+.post-title {
+    display: grid;
+    grid-template-columns: 100px 280px 100px;
+    align-items: center;
+}
+
+.post-contents {
+    background-color: white;
+    border-radius: 50% 50% 0 0;
 }
 
 .comment {
@@ -24,6 +42,9 @@
     background-color: rgb(209, 221, 231);
 }
 
+.comments-delete-section {
+    background-color: white;
+}
 
 .post:hover {
     opacity: 1;
