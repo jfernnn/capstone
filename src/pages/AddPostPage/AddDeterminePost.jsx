@@ -60,6 +60,7 @@ class AddDeterminePost extends Component {
     return (
       <div className="choice-header">
         <h1>Choose Wisely..</h1>
+        <h2>{this.props.items[0].name}</h2>
         {this.props.items.map((item, key) => 
           <form key={key} onSubmit={() => this.handleChoice(item)}>
             <div className="post-choice">
