@@ -60,7 +60,7 @@ class App extends Component {
   }
   
   handleNewNewPost = async (item, uN) => {
-    console.log(this.state.token);
+
     const newPost = {};
     if(item.type === 'track') {
       newPost.title = item.name;
@@ -212,6 +212,9 @@ class App extends Component {
               handleNewPost={this.handleNewPost}
               loginToSpot={this.loginToSpot}
             />
+          }/>
+          <Route exact path='/add/determine_post?' render={() =>
+            <Redirect to='/' />
           }/>
         </Switch>
         </div>

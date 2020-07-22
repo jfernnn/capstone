@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Comment from '../Comment/Comment';
 import * as commentService from '../../../src/utils/commentService';
 import './PostCard.css'
