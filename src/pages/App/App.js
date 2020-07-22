@@ -86,6 +86,7 @@ class App extends Component {
     newPost.userName = uN;
     newPost.description = this.state.description;
     await postService.createPostAPI(newPost)
+    console.log('rick and morty')
     this.getAllPosts();
     //<Redirect to='' />
   }

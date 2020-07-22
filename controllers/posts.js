@@ -24,6 +24,7 @@ async function index(req, res) {
 async function create(req, res) {
     req.body.user = req.user._id;
     try {
+        console.log('create-rec body', req.body)
         const post = await Post.create(req.body);
         res.status(201).json(post);
     } catch(err) {
