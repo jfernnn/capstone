@@ -17,7 +17,7 @@ class AddDeterminePost extends Component {
     }
   }
 
-  handleChoice(item) {
+  handleChoice = (item) => {
     const newPost = {};
     if(item.type === 'track') {
       newPost.title = item.name;
@@ -60,11 +60,12 @@ class AddDeterminePost extends Component {
     return (
       <div className="choice-header">
         <h1>Choose Wisely..</h1>
-        <h2>{this.props.items[0].name}</h2>
+        {this.props.items[0] ? <h2>{this.props.items[0].name}</h2> : <span></span>}
         {this.props.items.map((item, key) => 
           <form key={key} onSubmit={() => this.handleChoice(item)}>
             <div className="post-choice">
-              <button type="submit">{item.name}</button><br></br>{this.handlePostType(item)}
+              <button type="submit">{item.name}</button>
+              <br></br>{this.handlePostType(item)}
               <p>{this.props.items.userName}</p>
             </div>
           </form>

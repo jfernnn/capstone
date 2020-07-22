@@ -61,7 +61,7 @@ class PostCard extends Component {
                             <div>
                                 {this.state.postData.comments.map((comment, key) => 
                                     <div key={key} className="comment-detail">
-                                        <h4 className='each-comment'>◘ {comment.comment}</h4> 
+                                        <h4 className='each-comment'>| {comment.comment} |</h4> 
                                         -{comment.userName}
                                     </div>
                                 )}

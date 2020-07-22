@@ -29,23 +29,19 @@ class App extends Component {
   handleNewPost = async (post) => {
     post.topic.replace(' ', '%20');
     const newPost = await spotifyAPI.getInfoAPI(post.topic, post.type, this.state.token);
-    console.log(newPost)
     newPost.type = post.type;
     newPost.userName = post.userName;
     if(newPost.type === 'track')  {
-      console.log(newPost.tracks.items)
       this.setState({
         items: newPost.tracks.items, description: post.description
       }, () => this.props.history.push('/add/determine_post'));
     }
     if(newPost.type === 'artist') {
-      console.log(newPost.artists.items)
       this.setState({
         items: newPost.artists.items, description: post.description
       }, () => this.props.history.push('/add/determine_post'));
     }
     if(newPost.type === 'album') {
-      console.log(newPost.albums.items)
       this.setState({
         items: newPost.albums.items, description: post.description
       }, () => this.props.history.push('/add/determine_post'));
@@ -53,12 +49,9 @@ class App extends Component {
     //<Redirect to='' />
   }
   
-  handleNewNewPost = async (newPost) => {
-    const pp = await postService.createPostAPI(newPost)
-    console.log('rick and morty')
-    this.setState({
-      posts: [...this.state.posts, pp]
-    }, () => this.props.history.push('/'));
+  handleNewNewPost = async newPost => {
+    const postToAdd = await postService.createPostAPI(newPost)
+    this.getAllPosts();
   }
 
   handleDeletePost = async postId => {

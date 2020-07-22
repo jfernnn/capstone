@@ -15,8 +15,6 @@ export function getAllPostsAPI() {
 }
 
 export function createPostAPI(postToCreate) {
-    console.log('made it to create all  ', postToCreate)
-
     return fetch(BASE_URL, {
         method: 'POST',
         headers: {

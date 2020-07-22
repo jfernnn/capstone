@@ -1,6 +1,6 @@
 # Music Connection
 
-In today's social media world, we have apps for sharing
+In today's social media world, there is platforms for sharing images, videos, thoughts, and what we're doing, but there is not a platform made to share music. Music Connection is a just that, a dedicated platform to share music you're listening to. To create a post, just search an album, artist, or track and post it on your page for your friends to see!
 
 ## Screenshots
 
@@ -8,7 +8,6 @@ In today's social media world, we have apps for sharing
 ![Add Post Page](https://imgur.com/EShn47J.jpg)
 ![Choose Post Page](https://imgur.com/ijmxpHc.jpg)
 ![Sorted Screen](https://imgur.com/nm5E9nv.jpg)
-![Login Screen](https://imgur.com/tlXMFAv.jpg)
 
 ## Technologies Used
 
