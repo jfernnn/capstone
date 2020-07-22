@@ -14,6 +14,7 @@ function MainPage(props) {
                     key={post._id}
                     post={post}
                     handleDeletePost={props.handleDeletePost}
+                    handleSortPage={props.handleSortPage}
                     history={props.history}
                 />
             )}

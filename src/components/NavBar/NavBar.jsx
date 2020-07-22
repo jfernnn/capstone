@@ -22,6 +22,7 @@ const NavBar = (props) => {
         <div>
             <Link to='/options' className='NavBtnTxt'>Options</Link>
             <Link to='/add' className='NavBtnTxt'>Add A Post</Link>
+            <Link to='/sorted/home' className='NavBtnTxt'>Ur page</Link>
         </div>
     </div>
   );

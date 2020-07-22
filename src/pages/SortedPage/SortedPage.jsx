@@ -1,23 +1,30 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PostCard from '../../components/PostCard/PostCard';
+import '../MainPage/MainPage.css'
 
 function SortedPage(props) {
     return (
-        <div>
+    <div>
+        <div className="mainpage-section">
+            <div></div>
+            <div className="post-section">
             {props.posts.map(post => 
+                props.userName === post.userName ?
                 <PostCard
                     user={props.user}
                     key={post._id}
                     post={post}
                     handleDeletePost={props.handleDeletePost}
+                    handleSortPost={props.handleSortPost}
                     history={props.history}
                 />
+                :
+                <span></span>
             )}
-            <button><Link to='/options'>Options</Link></button>
-            <br></br>
-            <button><Link to='/add'>Add a Post</Link></button>
+            </div>
+            <div></div>
         </div>
+    </div>
     );
 };
 

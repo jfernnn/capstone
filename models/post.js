@@ -32,6 +32,13 @@ const postSchema = new Schema({
     description: {
         type: String
     },
+    genres: [],
+    external_urls: {
+        type: String
+    },
+    image: {
+        type: String
+    },
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'

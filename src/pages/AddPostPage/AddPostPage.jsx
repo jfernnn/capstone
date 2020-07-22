@@ -15,6 +15,7 @@ class AddPostPage extends Component{
       handleSubmit = e => {
         e.preventDefault();
         console.log(this.state.formData);
+        this.props.loginToSpot();
         this.props.handleNewPost(this.state.formData);
       };
   
@@ -55,7 +56,7 @@ class AddPostPage extends Component{
                 />
               </div>
               <div className="add-post-input">
-              <textarea 
+                <textarea 
                   className="desc-input"
                   name="description" 
                   value={this.state.formData.description}

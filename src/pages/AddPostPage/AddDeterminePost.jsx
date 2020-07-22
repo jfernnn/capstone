@@ -13,7 +13,7 @@ class AddDeterminePost extends Component {
         } else if(item.type === 'album') {
             return `${item.name} | ${item.artists[0].name} | ${item.release_date}`; 
         } else if(item.type === 'artist') {
-            return `${item.name} | ${item.genres[0]} | Followers: ${item.followers.total}`;
+            return `${item.name} | ${item.genres[0] === undefined ? 'no genres listed' : item.genres[0]} | Followers: ${item.followers.total}`;
         }
     }
 

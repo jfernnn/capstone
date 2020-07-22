@@ -1,7 +1,7 @@
 .post {
     display: grid;
     border: solid;
-    margin-top: 20px;
+    margin: 20px 0 10px 0;
     background-color: #282c34;
     width: 490px;
     opacity: .86;
@@ -14,10 +14,17 @@
     color: white;
 }
 
+.post-header {
+    align-items: center;
+    width: 220px;
+    margin-left: 130px;
+}
+
 .post-title {
     display: grid;
     grid-template-columns: 100px 280px 100px;
     align-items: center;
+    height: 50px;
 }
 
 .post-contents {
@@ -52,4 +59,40 @@
 
 h1 {
     margin-top: 10px;
+}
+
+.spotify-image {
+    height: 200px;
+    width: 200px;
+}
+
+.spotify-artist-image {
+    margin-top: 20px;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.description {
+    font-size: 18px;
+    
+}
+
+.horizontal-line {
+    border-width: 3px;
+    border-color: grey;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.delete-btn {
+    margin: 4px 0;
+}
+
+button {
+    border: hidden;
+    background-color: #282c34;
+    color: white;
 }

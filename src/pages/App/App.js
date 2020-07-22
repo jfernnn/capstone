@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import MainPage from '../MainPage/MainPage';
+import SortedPage from '../SortedPage/SortedPage';
 import OptionsPage from '../OptionsPage/OptionsPage';
 import AddPostPage from '../AddPostPage/AddPostPage';
 import AddDeterminePost from '../AddPostPage/AddDeterminePost';
@@ -21,6 +22,7 @@ class App extends Component {
       posts: [],
       items: [],
       description: '',
+      userName: '',
       user: userService.getUser()
     }
   }
@@ -31,6 +33,7 @@ class App extends Component {
   }
 
   handleNewPost = async (post) => {
+    post.topic.replace(' ', '%20');
     const newPost = await spotifyAPI.getInfoAPI(post.topic, post.type, this.state.token);
     console.log(newPost)
     newPost.type = post.type;
@@ -63,15 +66,22 @@ class App extends Component {
       newPost.title = item.name;
       newPost.album = item.album.name;
       newPost.artist = item.artists[0].name;
+      newPost.genres = null;
+      newPost.image = item.album.images[0].url;
     } else if(item.type === 'album') {
       newPost.title = null;
       newPost.album = item.name;
       newPost.artist = item.artists[0].name;
+      newPost.genres = null;
+      newPost.image = item.images[0].url;
     } else if(item.type === 'artist') {
       newPost.title = null;
       newPost.album = null;
       newPost.artist = item.name;
+      newPost.genres = item.genres;
+      newPost.image = item.images[0].url;
     }
+    newPost.external_urls = item.external_urls.spotify;
     newPost.type = item.type;
     newPost.userName = uN;
     newPost.description = this.state.description;
@@ -85,6 +95,12 @@ class App extends Component {
     this.setState(state => ({
       posts: state.posts.filter(post => post._id !== postId)
     }), () => this.props.history.push('/'));
+  }
+
+  handleSortPage = (sortPageUserName) => {
+    this.setState({
+      userName: sortPageUserName
+    }, () => this.props.history.push('./sorted'))
   }
 
   getAllPosts = async () => {
@@ -133,6 +149,37 @@ class App extends Component {
                 handleLogout={this.handleLogout}
                 handleDeletePost={this.handleDeletePost}
                 handleNewPost={this.handleNewPost}
+                handleSortPage={this.handleSortPage}
+              />
+            :
+              <Redirect to='/login' />
+          }/>
+          <Route exact path='/sorted' render={({ history }) => 
+            userService.getUser() ?
+              <SortedPage 
+                history={history}
+                posts={this.state.posts}
+                user={this.state.user}
+                handleLogout={this.handleLogout}
+                handleDeletePost={this.handleDeletePost}
+                handleNewPost={this.handleNewPost}
+                userName={this.state.userName}
+                handleSortPage={this.handleSortPage}
+              />
+            :
+              <Redirect to='/login' />
+          }/>
+          <Route exact path='/sorted/home' render={({ history }) => 
+            userService.getUser() ?
+              <SortedPage 
+                history={history}
+                posts={this.state.posts}
+                user={this.state.user}
+                handleLogout={this.handleLogout}
+                handleDeletePost={this.handleDeletePost}
+                handleNewPost={this.handleNewPost}
+                userName={this.state.user.name}
+                handleSortPage={this.handleSortPage}
               />
             :
               <Redirect to='/login' />
