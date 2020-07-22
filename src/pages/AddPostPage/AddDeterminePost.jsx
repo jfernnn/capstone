@@ -3,8 +3,47 @@ import './AddPostPeg.css'
 
 
 class AddDeterminePost extends Component {
+  state = {
+    formData: {
+      title: '',
+      type: '',
+      album: '',
+      artist: '',
+      description: '',
+      genres: [],
+      external_urls: '',
+      image: '',
+      userName: ''
+    }
+  }
+
   handleChoice(item) {
-    this.props.handleNewNewPost(item, this.props.user.name);
+    const newPost = {};
+    if(item.type === 'track') {
+      newPost.title = item.name;
+      newPost.album = item.album.name;
+      newPost.artist = item.artists[0].name;
+      newPost.genres = null;
+      newPost.image = item.album.images[0].url;
+    } else if(item.type === 'album') {
+      newPost.title = null;
+      newPost.album = item.name;
+      newPost.artist = item.artists[0].name;
+      newPost.genres = null;
+      newPost.image = item.images[0].url;
+    } else if(item.type === 'artist') {
+      newPost.title = null;
+      newPost.album = null;
+      newPost.artist = item.name;
+      newPost.genres = item.genres;
+      newPost.image = item.images[0].url;
+    }
+    newPost.external_urls = item.external_urls.spotify;
+    newPost.type = item.type;
+    newPost.userName = this.props.user.name;
+    newPost.description = this.props.description;
+    console.log('thisisnewpost', newPost);
+    this.props.handleNewNewPost(newPost);
   }
 
   handlePostType(item) {

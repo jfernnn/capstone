@@ -15,7 +15,6 @@ class AddPostPage extends Component{
   handleSubmit = e => {
     e.preventDefault();
     console.log(this.state.formData);
-    this.props.loginToSpot();
     this.props.handleNewPost(this.state.formData);
   };
   

@@ -27,10 +27,7 @@ class App extends Component {
     }
   }
 
-  async componentDidMount() {
-    console.log('compontent did mount')
-    this.getAllPosts();
-  }
+
 
   handleNewPost = async (post) => {
     post.topic.replace(' ', '%20');
@@ -59,36 +56,43 @@ class App extends Component {
     //<Redirect to='' />
   }
   
-  handleNewNewPost = async (item, uN) => {
+  handleNewNewPost = (item) => {
 
-    const newPost = {};
-    if(item.type === 'track') {
-      newPost.title = item.name;
-      newPost.album = item.album.name;
-      newPost.artist = item.artists[0].name;
-      newPost.genres = null;
-      newPost.image = item.album.images[0].url;
-    } else if(item.type === 'album') {
-      newPost.title = null;
-      newPost.album = item.name;
-      newPost.artist = item.artists[0].name;
-      newPost.genres = null;
-      newPost.image = item.images[0].url;
-    } else if(item.type === 'artist') {
-      newPost.title = null;
-      newPost.album = null;
-      newPost.artist = item.name;
-      newPost.genres = item.genres;
-      newPost.image = item.images[0].url;
-    }
-    newPost.external_urls = item.external_urls.spotify;
-    newPost.type = item.type;
-    newPost.userName = uN;
-    newPost.description = this.state.description;
-    await postService.createPostAPI(newPost)
-    console.log('rick and morty')
-    this.getAllPosts();
+    // const newPost = {};
+    // if(item.type === 'track') {
+    //   newPost.title = item.name;
+    //   newPost.album = item.album.name;
+    //   newPost.artist = item.artists[0].name;
+    //   newPost.genres = null;
+    //   newPost.image = item.album.images[0].url;
+    // } else if(item.type === 'album') {
+    //   newPost.title = null;
+    //   newPost.album = item.name;
+    //   newPost.artist = item.artists[0].name;
+    //   newPost.genres = null;
+    //   newPost.image = item.images[0].url;
+    // } else if(item.type === 'artist') {
+    //   newPost.title = null;
+    //   newPost.album = null;
+    //   newPost.artist = item.name;
+    //   newPost.genres = item.genres;
+    //   newPost.image = item.images[0].url;
+    // }
+    // newPost.external_urls = item.external_urls.spotify;
+    // newPost.type = item.type;
+    // newPost.userName = uN;
+    // newPost.description = this.state.description;
+    // console.log('thisisnewpost', newPost);
+    this.createAPost(item);
     //<Redirect to='' />
+  }
+
+  createAPost = async (newPost) => {
+    const pp = await postService.createPostAPI(newPost)
+    console.log('rick and morty')
+    this.setState({
+      posts: [...this.state.posts, pp]
+    }, () => this.props.history.push('/'));
   }
 
   handleDeletePost = async postId => {
@@ -128,6 +132,11 @@ class App extends Component {
     const loggedIn = await spotifyAPI.authorizeSpot();
     const token = loggedIn.access_token;
     this.setState({token});
+  }
+
+  async componentDidMount() {
+    console.log('compontent did mount')
+    this.getAllPosts();
   }
 
   render() {
@@ -205,6 +214,7 @@ class App extends Component {
               user={this.state.user}
               items={this.state.items}
               handleNewNewPost={this.handleNewNewPost}
+              description={this.state.description}
             />
           }/>
           <Route exact path='/add' render={() =>
