@@ -26,7 +26,7 @@ class Comment extends Component {
         <div>
             <form onSubmit={this.handleSubmit}>
                 <div>
-                    <label>Add Comment</label>
+                    <label></label>
                     <br></br>
                     <textarea 
                         className='comment-text-area'
@@ -37,7 +37,9 @@ class Comment extends Component {
                     />
                 </div>
                 <button type="submit">
+                    <div className='add-comment-btn'>
                     Add Comment
+                    </div>
                 </button>
             </form>
         </div>

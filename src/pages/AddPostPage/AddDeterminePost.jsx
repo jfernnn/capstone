@@ -48,24 +48,23 @@ class AddDeterminePost extends Component {
 
   handlePostType(item) {
     if(item.type === 'track') {
-      return `${item.name} | ${item.artists[0].name} | ${item.album.name} | ${item.album.release_date}`;
+      return `${item.artists[0].name} | ${item.album.name} | ${item.album.release_date}`;
     } else if(item.type === 'album') {
-      return `${item.name} | ${item.artists[0].name} | ${item.release_date}`; 
+      return `${item.artists[0].name} | ${item.release_date}`; 
     } else if(item.type === 'artist') {
-        return `${item.name} | ${item.genres[0] === undefined ? 'no genres listed' : item.genres[0]} | Followers: ${item.followers.total}`;
+        return `${item.genres[0] === undefined ? 'no genres listed' : item.genres[0]} | Followers: ${item.followers.total}`;
     }
   }
 
   render() {
     return (
-      <div>
-        <h1>There's more than one so you'll have to choose ${this.props.user.name}</h1>
+      <div className="choice-header">
+        <h1>Choose Wisely..</h1>
         {this.props.items.map((item, key) => 
           <form key={key} onSubmit={() => this.handleChoice(item)}>
             <div className="post-choice">
-              <button type="submit">✔</button> 
+              <button type="submit">{item.name}</button><br></br>{this.handlePostType(item)}
               <p>{this.props.items.userName}</p>
-              {this.handlePostType(item)}
             </div>
           </form>
         )}

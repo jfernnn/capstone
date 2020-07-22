@@ -46,7 +46,7 @@ class PostCard extends Component {
             //this.handleTypeOfComment(this.props)
             <div className='post'>
                 <div className='post-title'>
-                    <button className='user-button' onClick={() => this.props.handleSortPage(this.props.post.userName)}>
+                    <button onClick={() => this.props.handleSortPage(this.props.post.userName)}>
                         <h3 className='post-type'>{this.props.post.userName}</h3>
                     </button>
                     <h1 className='post-type'>{this.props.post.type.toUpperCase()}</h1>
@@ -58,23 +58,29 @@ class PostCard extends Component {
                         <div></div>
                         <details className='comment-section'>
                             <summary className='comment'>COMMENTS</summary>
-                            <ul>
+                            <div>
                                 {this.state.postData.comments.map((comment, key) => 
-                                    <li key={key}><h6>{comment.comment} -posted by {comment.userName}</h6></li>
+                                    <div key={key} className="comment-detail">
+                                        <hr className='horizontal-line'></hr>
+                                        <h4 className='each-comment'>{comment.comment}</h4> 
+                                        -{comment.userName}
+                                    </div>
                                 )}
                                 <Comment 
                                     handleAddComment={this.handleAddComment} 
                                     user={this.props.user} 
                                     postId={this.props.post._id}
                                 />
-                            </ul>
+                            </div>
                         </details>
                         <div></div>
                     </div>
                     <div className='delete-btn'>
-                        <button onClick={() => this.props.handleDeletePost(this.props.post._id)}>
-                            DELETE
-                        </button>
+                        {this.props.user.name === this.props.post.userName ?
+                            <button className='delete-button' onClick={() => this.props.handleDeletePost(this.props.post._id)}>DELETE</button>
+                        :
+                            <span></span>
+                        }
                     </div>
                 </div>
             </div>

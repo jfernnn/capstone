@@ -45,31 +45,29 @@
     display: grid;
     border: groove;
     width: 300px;
-    opacity: .78;
-    background-color: rgb(209, 221, 231);
+    padding-left: -50px;
+    background-color: #282c34;
+    color: white;
 }
 
 .comments-delete-section {
     background-color: white;
 }
 
-.post:hover {
-    opacity: 1;
-}
 
 h1 {
     margin-top: 10px;
 }
 
 .spotify-image {
-    height: 200px;
-    width: 200px;
+    height: 250px;
+    width: 250px;
 }
 
 .spotify-artist-image {
     margin-top: 20px;
-    height: 200px;
-    width: 200px;
+    height: 250px;
+    width: 250px;
     border-radius: 50%;
 }
 
@@ -91,8 +89,18 @@ h1 {
     margin: 4px 0;
 }
 
+.delete-button {
+    background-color: white;
+    color: black;
+}
+
 button {
-    border: hidden;
+    border-style: none;
     background-color: #282c34;
     color: white;
 }
+
+.each-comment {
+    margin: -8px 0 0 0;
+}
+

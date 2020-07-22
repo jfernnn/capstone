@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import MainPage from '../MainPage/MainPage';
 import SortedPage from '../SortedPage/SortedPage';
-import OptionsPage from '../OptionsPage/OptionsPage';
 import AddPostPage from '../AddPostPage/AddPostPage';
 import AddDeterminePost from '../AddPostPage/AddDeterminePost';
 import NavBar from '../../components/NavBar/NavBar';
@@ -26,8 +25,6 @@ class App extends Component {
       user: userService.getUser()
     }
   }
-
-
 
   handleNewPost = async (post) => {
     post.topic.replace(' ', '%20');
@@ -56,38 +53,7 @@ class App extends Component {
     //<Redirect to='' />
   }
   
-  handleNewNewPost = (item) => {
-
-    // const newPost = {};
-    // if(item.type === 'track') {
-    //   newPost.title = item.name;
-    //   newPost.album = item.album.name;
-    //   newPost.artist = item.artists[0].name;
-    //   newPost.genres = null;
-    //   newPost.image = item.album.images[0].url;
-    // } else if(item.type === 'album') {
-    //   newPost.title = null;
-    //   newPost.album = item.name;
-    //   newPost.artist = item.artists[0].name;
-    //   newPost.genres = null;
-    //   newPost.image = item.images[0].url;
-    // } else if(item.type === 'artist') {
-    //   newPost.title = null;
-    //   newPost.album = null;
-    //   newPost.artist = item.name;
-    //   newPost.genres = item.genres;
-    //   newPost.image = item.images[0].url;
-    // }
-    // newPost.external_urls = item.external_urls.spotify;
-    // newPost.type = item.type;
-    // newPost.userName = uN;
-    // newPost.description = this.state.description;
-    // console.log('thisisnewpost', newPost);
-    this.createAPost(item);
-    //<Redirect to='' />
-  }
-
-  createAPost = async (newPost) => {
+  handleNewNewPost = async (newPost) => {
     const pp = await postService.createPostAPI(newPost)
     console.log('rick and morty')
     this.setState({
@@ -119,7 +85,7 @@ class App extends Component {
 
   handleLogout = () => {
     userService.logout();
-    this.setState({ user: null });
+    this.setState({ user: null }, () => this.props.history.push('/'));
   }
 
   handleSignupOrLogin = () => {
@@ -194,9 +160,6 @@ class App extends Component {
             :
               <Redirect to='/login' />
           }/>
-          <Route exact path='/options' render={() =>
-            <OptionsPage />
-          }/>
           <Route exact path='/signup' render={({ history }) => 
             <SignupPage 
               history={history}
@@ -218,11 +181,14 @@ class App extends Component {
             />
           }/>
           <Route exact path='/add' render={() =>
-            <AddPostPage 
-              user={this.state.user}
-              handleNewPost={this.handleNewPost}
-              loginToSpot={this.loginToSpot}
-            />
+            userService.getUser() ?
+              <AddPostPage 
+                user={this.state.user}
+                handleNewPost={this.handleNewPost}
+                loginToSpot={this.loginToSpot}
+              />
+            :
+              <Redirect to='/login' />
           }/>
           <Route exact path='/add/determine_post?' render={() =>
             <Redirect to='/' />

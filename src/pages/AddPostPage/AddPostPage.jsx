@@ -32,7 +32,7 @@ class AddPostPage extends Component{
   
   render(){
     return (
-      <div>
+      <div className="add-post-page">
         <h1 className="add-post">ADD A POST</h1>
         <form onSubmit={this.handleSpotify}>
           <button type="submit">Obtain a Token</button>

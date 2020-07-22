@@ -6,8 +6,6 @@ module.exports = {
     delete: deleteOne,
 }
 
-
-
 async function index(req, res) {
     console.log('hit index!!!')
     try {
@@ -28,7 +26,7 @@ async function create(req, res) {
         const post = await Post.create(req.body);
         res.status(201).json(post);
     } catch(err) {
-        res.status(500).json(err);
+        res.status(500).json('dum dum');
     }
 }
 
