@@ -45,6 +45,7 @@ class AddPostPage extends Component{
       <div className="add-post-page">
         <h1 className="add-post">ADD A POST</h1>
         <form onSubmit={this.handleSpotify}>
+          <div>Please Click Before Submitting</div>
           <button type="submit">Obtain a Token</button>
         </form>
         <form onSubmit={this.handleSubmit}>
