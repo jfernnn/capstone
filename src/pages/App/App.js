@@ -105,6 +105,7 @@ class App extends Component {
         <NavBar 
             user={this.state.user} 
             handleLogout={this.handleLogout}
+            loginToSpot={this.loginToSpot}
         />
         </div>
         <div className="Body">

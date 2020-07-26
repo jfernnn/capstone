@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 import './AddPostPeg.css'
 
 class AddPostPage extends Component{
   state = {
     formData: {
       description: '',
-      type: '',
+      type: 'track',
       topic: '',
       userName: this.props.user.name
-    }
+    },
+    typeList: ['track', 'artist', 'album'],
   }
   
   handleSubmit = e => {
@@ -20,6 +23,13 @@ class AddPostPage extends Component{
   
   handleChange = e => {
     const formData = {...this.state.formData, [e.target.name]: e.target.value};
+    this.setState({
+      formData
+    });
+  };
+
+  handleDropDownChange = e => {
+    const formData = {...this.state.formData, "type": e.value};
     this.setState({
       formData
     });
@@ -38,19 +48,20 @@ class AddPostPage extends Component{
           <button type="submit">Obtain a Token</button>
         </form>
         <form onSubmit={this.handleSubmit}>
-          <div className="add-post-input">
-            <input 
+          <div className="add-post-dropdown">
+            <Dropdown 
               name="type" 
-              value={this.state.formData.type}
-              placeholder="Track, artist, or album" 
-              onChange={this.handleChange}
+              options={this.state.typeList} 
+              onChange={this.handleDropDownChange} 
+              value={this.state.formData.type} 
+              placeholder="Select an option" 
             />
           </div>
           <div className="add-post-input">
             <input 
               name="topic" 
               value={this.state.formData.topic}
-              placeholder="Enter the name" 
+              placeholder="Name of track/artist/album"
               onChange={this.handleChange}
             />
           </div>

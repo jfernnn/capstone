@@ -18,6 +18,12 @@
     margin-top: 15px;
 }
 
+.add-post-dropdown {
+    margin-top: 15px;
+    display: grid;
+    justify-content: center;
+}
+
 .desc-input {
     height: 60px;
     width: 220px;

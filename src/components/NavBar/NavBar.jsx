@@ -20,8 +20,8 @@ const NavBar = (props) => {
         <div>{nav}</div>
         <div><Link to='/' className='NavBtnTxt'>Music Connection</Link></div>
         <div>
-            <Link to='/add' className='NavBtnTxt'>Add A Post</Link>
-            <Link to='/sorted/home' className='NavBtnTxt'>Home</Link>
+              <button><Link to='/add' className='NavBtnTxt'>Add A Post</Link></button>
+              <Link to='/sorted/home' className='NavBtnTxt'>Home</Link>
         </div>
     </div>
   );
